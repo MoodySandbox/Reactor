@@ -2,32 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.reaction {
+	&:before {
+		content: attr(data-emoji);
+		position: absolute;
+		top: 0;
+		left: 50%;
+		font-size: 1.2em;
+		transform: translate3d(-50%, 0px, 0px);
+		animation: 1.5s linear 0s 1 normal none running reactions;
+		z-index: -1;
+	}
+
+	&:hover:after {
+		content: attr(data-emoji);
+		position: absolute;
+		top: 0;
+		left: 50%;
+		font-size: 1.2em;
+		transform: translate3d(-50%, 0px, 0px);
+		animation: 1.5s linear 0s 1 normal none running reactions;
+		z-index: -1;
+		animation-iteration-count: infinite;
+	}
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
+/* Tiktok live animation */
+@keyframes reactions {
+	0% {
+		transform: translate3d(-50%, 0px, 0px) rotate(0deg) scale(0.4);
+		opacity: 1;
+	}
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
+	10% {
+		transform: translate3d(-48%, -20px, 0px) scale(1);
+		opacity: 1;
+	}
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+	50% {
+		transform: translate3d(-40%, -100px, 0px) rotate(-4deg) scale(1);
+		opacity: 1;
+	}
+
+	90% {
+		transform: translate3d(-53%, -180px, 0px) scale(1);
+		opacity: 1;
+	}
+
+	100% {
+		transform: translate3d(-55%, -200px, 0px) rotate(4deg) scale(0.7);
+		opacity: 0;
+	}
 }
